@@ -1,6 +1,8 @@
 # Simple Pong in Python 3
 
 import turtle
+import winsound
+
 
 window = turtle.Screen()
 window.title("PONG")
@@ -38,7 +40,6 @@ ball.goto(0, 0)
 ball.dx = 0.05
 ball.dy = 0.05
 
-
 # Score
 pen = turtle.Turtle()
 pen.speed(0)
@@ -47,6 +48,7 @@ pen.penup()
 pen.hideturtle()
 pen.goto(0, 260)
 pen.write(f'Player A: {score_a}  Player B: {score_b}', align="center", font=("Courier", 24, "normal"))
+
 
 # Move paddles
 def paddle_a_up():
@@ -100,9 +102,13 @@ while True:
     if ball.ycor() >= 290:
         ball.sety(290)
         ball.dy *= -1
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
+
     if ball.ycor() <= -290:
         ball.sety(-290)
         ball.dy *= -1
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
+
 
     # ball x movement
     if ball.xcor() >= 390:
@@ -122,8 +128,8 @@ while True:
     if (340 < ball.xcor() < 350) and ((paddle_b.ycor() - 40) < ball.ycor() < (paddle_b.ycor() + 40)):
         ball.setx(340)
         ball.dx *= -1
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
     if (-350 < ball.xcor() < -340) and ((paddle_a.ycor() - 40) < ball.ycor() < (paddle_a.ycor() + 40)):
         ball.setx(-340)
         ball.dx *= -1
-
-
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
