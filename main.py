@@ -82,3 +82,35 @@ window.onkey(paddle_b_down, "k")
 # Main game loop
 while True:
     window.update()
+
+    # Move ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # ball y movement
+    if ball.ycor() >= 290:
+        ball.sety(290)
+        ball.dy *= -1
+    if ball.ycor() <= -290:
+        ball.sety(-290)
+        ball.dy *= -1
+
+    # ball x movement
+    if ball.xcor() >= 390:
+        ball.goto(0, 0)
+        ball.dx *= -1
+        score_a += 1
+    if ball.xcor() <= -390:
+        ball.goto(0, 0)
+        ball.dx *= -1
+        score_b += 1
+
+    # ball and paddle collisions
+    if (340 < ball.xcor() < 350) and ((paddle_b.ycor() - 40) < ball.ycor() < (paddle_b.ycor() + 40)):
+        ball.setx(340)
+        ball.dx *= -1
+    if (-350 < ball.xcor() < -340) and ((paddle_a.ycor() - 40) < ball.ycor() < (paddle_a.ycor() + 40)):
+        ball.setx(-340)
+        ball.dx *= -1
+
+
