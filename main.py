@@ -3,7 +3,6 @@
 import turtle
 import winsound
 
-
 window = turtle.Screen()
 window.title("PONG")
 window.bgcolor("black")
@@ -108,7 +107,6 @@ while True:
         ball.sety(-290)
         ball.dy *= -1
         winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
-
 
     # ball x movement
     if ball.xcor() >= 390:
